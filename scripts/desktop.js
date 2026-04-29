@@ -122,16 +122,18 @@
     let hue = 0;
 
     function bounds() {
+      const elRect = el.getBoundingClientRect();
+      const dRect = desktopEl.getBoundingClientRect();
       return {
-        maxX: Math.max(0, desktopEl.clientWidth - el.offsetWidth),
-        maxY: Math.max(0, desktopEl.clientHeight - el.offsetHeight - 22),
+        maxX: Math.max(0, dRect.width - elRect.width),
+        maxY: Math.max(0, dRect.height - elRect.height - 22),
       };
     }
 
     function init() {
       const b = bounds();
-      x = Math.random() * (b.maxX - 100) + 50;
-      y = Math.random() * (b.maxY - 100) + 50;
+      x = Math.random() * Math.max(1, b.maxX - 100) + 50;
+      y = Math.random() * Math.max(1, b.maxY - 100) + 50;
       el.style.left = x + 'px';
       el.style.top = y + 'px';
       requestAnimationFrame(frame);
@@ -143,14 +145,14 @@
       y += vy;
 
       let bounced = false;
-      if (x <= 0)         { x = 0;    vx = -vx; bounced = true; }
-      else if (x >= maxX) { x = maxX; vx = -vx; bounced = true; }
-      if (y <= 0)         { y = 0;    vy = -vy; bounced = true; }
-      else if (y >= maxY) { y = maxY; vy = -vy; bounced = true; }
+      if (x <= 0)         { x = 0;    vx = Math.abs(vx);  bounced = true; }
+      else if (x >= maxX) { x = maxX; vx = -Math.abs(vx); bounced = true; }
+      if (y <= 0)         { y = 0;    vy = Math.abs(vy);  bounced = true; }
+      else if (y >= maxY) { y = maxY; vy = -Math.abs(vy); bounced = true; }
 
       if (bounced) {
         hue = (hue + 47) % 360;
-        el.style.filter = `hue-rotate(${hue}deg)`;
+        el.style.filter = `hue-rotate(${hue}deg) drop-shadow(3px 3px 0 rgba(0,0,0,0.55))`;
       }
 
       el.style.left = x + 'px';
