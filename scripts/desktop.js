@@ -116,34 +116,55 @@
     const desktopEl = document.getElementById('desktop');
     if (!el || !desktopEl) return;
 
-    let x = Math.random() * 200 + 50;
-    let y = Math.random() * 200 + 50;
-    let vx = 1.4;
-    let vy = 1.1;
+    let x = 0, y = 0;
+    let vx = 1.6;
+    let vy = 1.2;
     let hue = 0;
 
-    function frame() {
-      const w = desktopEl.clientWidth - el.offsetWidth;
-      const h = desktopEl.clientHeight - el.offsetHeight - 22;
+    function bounds() {
+      return {
+        maxX: Math.max(0, desktopEl.clientWidth - el.offsetWidth),
+        maxY: Math.max(0, desktopEl.clientHeight - el.offsetHeight - 22),
+      };
+    }
 
+    function init() {
+      const b = bounds();
+      x = Math.random() * (b.maxX - 100) + 50;
+      y = Math.random() * (b.maxY - 100) + 50;
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      requestAnimationFrame(frame);
+    }
+
+    function frame() {
+      const { maxX, maxY } = bounds();
       x += vx;
       y += vy;
 
       let bounced = false;
-      if (x <= 0)      { x = 0; vx = -vx; bounced = true; }
-      else if (x >= w) { x = w; vx = -vx; bounced = true; }
-      if (y <= 0)      { y = 0; vy = -vy; bounced = true; }
-      else if (y >= h) { y = h; vy = -vy; bounced = true; }
+      if (x <= 0)         { x = 0;    vx = -vx; bounced = true; }
+      else if (x >= maxX) { x = maxX; vx = -vx; bounced = true; }
+      if (y <= 0)         { y = 0;    vy = -vy; bounced = true; }
+      else if (y >= maxY) { y = maxY; vy = -vy; bounced = true; }
 
       if (bounced) {
         hue = (hue + 47) % 360;
         el.style.filter = `hue-rotate(${hue}deg)`;
       }
 
-      el.style.transform = `translate(${x}px, ${y}px)`;
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
       requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+
+    const img = el.querySelector('img');
+    if (img && !img.complete) {
+      img.addEventListener('load', init, { once: true });
+      img.addEventListener('error', init, { once: true });
+    } else {
+      init();
+    }
   }
 
   document.addEventListener('desktop:ready', () => {
