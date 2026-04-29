@@ -50,46 +50,6 @@
   cursor: wait !important;
 }
 
-#dvd-bouncer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 110px;
-  display: block;
-  z-index: 1;
-  pointer-events: none;
-  filter: hue-rotate(0deg) drop-shadow(3px 3px 0 rgba(0,0,0,0.55));
-  transition: filter 60ms steps(2, end);
-  will-change: left, top, filter;
-  overflow: visible;
-}
-
-.dvd-letters {
-  font-family: 'Anton', 'Arial Narrow', 'Arial Black', sans-serif;
-  font-size: 92px;
-  font-weight: 400;
-  letter-spacing: -10px;
-  fill: url(#pp-fill);
-  stroke: #fff;
-  stroke-width: 2.5;
-  paint-order: stroke fill;
-}
-
-.video-banner ellipse {
-  fill: url(#pp-fill);
-  stroke: #fff;
-  stroke-width: 2;
-}
-
-.dvd-video {
-  font-family: 'Anton', 'Arial Narrow', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  fill: #fff;
-  letter-spacing: 3px;
-}
-
 .window {
   position: absolute;
   background: #c0c0c0;
