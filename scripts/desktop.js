@@ -111,9 +111,45 @@
     el.textContent = `${hh}:${mm}`;
   }
 
+  function startBouncer() {
+    const el = document.getElementById('dvd-bouncer');
+    const desktopEl = document.getElementById('desktop');
+    if (!el || !desktopEl) return;
+
+    let x = Math.random() * 200 + 50;
+    let y = Math.random() * 200 + 50;
+    let vx = 1.4;
+    let vy = 1.1;
+    let hue = 0;
+
+    function frame() {
+      const w = desktopEl.clientWidth - el.offsetWidth;
+      const h = desktopEl.clientHeight - el.offsetHeight - 22;
+
+      x += vx;
+      y += vy;
+
+      let bounced = false;
+      if (x <= 0)      { x = 0; vx = -vx; bounced = true; }
+      else if (x >= w) { x = w; vx = -vx; bounced = true; }
+      if (y <= 0)      { y = 0; vy = -vy; bounced = true; }
+      else if (y >= h) { y = h; vy = -vy; bounced = true; }
+
+      if (bounced) {
+        hue = (hue + 47) % 360;
+        el.style.filter = `hue-rotate(${hue}deg)`;
+      }
+
+      el.style.transform = `translate(${x}px, ${y}px)`;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
   document.addEventListener('desktop:ready', () => {
     bringToFront(document.getElementById('program-manager'));
     updateClock();
     setInterval(updateClock, 30000);
+    startBouncer();
   });
 })();
