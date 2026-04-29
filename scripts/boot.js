@@ -7,6 +7,10 @@
   const splashScreen = document.getElementById('splash-screen');
   const desktop = document.getElementById('desktop');
 
+  // CRT power-on effect kicks in immediately
+  bootScreen.classList.add('powering-on');
+  document.body.classList.add('cursor-busy');
+
   // Allow skipping with any key for impatient visitors
   let skipped = false;
   const skip = () => { skipped = true; };
@@ -92,6 +96,7 @@
   function showDesktop() {
     splashScreen.classList.add('hidden');
     desktop.classList.remove('hidden');
+    document.body.classList.remove('cursor-busy');
     document.dispatchEvent(new CustomEvent('desktop:ready'));
   }
 

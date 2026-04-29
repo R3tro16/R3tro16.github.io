@@ -22,6 +22,42 @@
   overflow: hidden;
 }
 
+/* ========== ANIMATIONS (Win 3.1 zoom-box) ========== */
+
+/* Iconic Win 3.1 "rectangle expands from icon to full size" effect.
+   Uses steps() to feel discrete/CRT-era instead of smooth. */
+.window.opening {
+  animation: zoomBoxOpen 220ms steps(4, end);
+}
+@keyframes zoomBoxOpen {
+  0%   { transform: scale(0.05); opacity: 0.3; }
+  50%  { transform: scale(0.5);  opacity: 0.6; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+.window.closing {
+  animation: zoomBoxClose 180ms steps(4, end) forwards;
+}
+@keyframes zoomBoxClose {
+  0%   { transform: scale(1);    opacity: 1; }
+  100% { transform: scale(0.05); opacity: 0; }
+}
+
+/* Quick color-invert flash when an icon is double-clicked, before the window opens */
+.desktop-icon.flashing {
+  animation: iconFlash 240ms steps(3, end);
+}
+@keyframes iconFlash {
+  0%, 100% { filter: none; }
+  33%      { filter: invert(1); }
+  66%      { filter: none; }
+}
+
+/* Cursor during transitions */
+.cursor-busy, .cursor-busy * {
+  cursor: wait !important;
+}
+
 /* ========== WINDOW (chrome) ========== */
 
 .window {

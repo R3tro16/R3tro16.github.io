@@ -17,9 +17,18 @@
       const id = icon.dataset.window;
       const win = document.querySelector(`.app-window[data-id="${id}"]`);
       if (!win) return;
-      win.classList.remove('hidden');
-      bringToFront(win);
       icon.classList.remove('selected');
+
+      // Win 3.1 icon flash, then window zoom-box opens during the flash tail
+      icon.classList.add('flashing');
+      setTimeout(() => icon.classList.remove('flashing'), 240);
+
+      setTimeout(() => {
+        win.classList.remove('hidden', 'closing');
+        win.classList.add('opening');
+        bringToFront(win);
+        setTimeout(() => win.classList.remove('opening'), 220);
+      }, 80);
     };
 
     icon.addEventListener('click', (e) => {
@@ -54,7 +63,13 @@
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const win = btn.closest('.window');
-      if (win) win.classList.add('hidden');
+      if (!win) return;
+      win.classList.remove('opening');
+      win.classList.add('closing');
+      setTimeout(() => {
+        win.classList.add('hidden');
+        win.classList.remove('closing');
+      }, 180);
     });
   });
 
