@@ -1,5 +1,3 @@
-/* ========== BOOT SCREEN (MS-DOS / BIOS style) ========== */
-
 body {
   margin: 0;
   padding: 0;
@@ -26,8 +24,6 @@ body {
   cursor: default;
 }
 
-/* CRT power-on: thin horizontal line expands vertically to fill the screen.
-   Uses a mask so the boot text is revealed only inside the growing line. */
 .boot-screen.powering-on {
   animation: crtPowerOn 900ms steps(8, end) forwards;
 }
@@ -39,7 +35,6 @@ body {
   100% { clip-path: inset(0 0 0 0);      filter: brightness(1); }
 }
 
-/* Hourglass cursor used during transitions (boot → splash → desktop) */
 .cursor-busy, .cursor-busy * {
   cursor: wait !important;
 }
@@ -61,7 +56,6 @@ body {
   50% { opacity: 0; }
 }
 
-/* CRT scanline + flicker effect */
 .boot-screen::before {
   content: "";
   position: absolute;
@@ -84,8 +78,6 @@ body {
   pointer-events: none;
   z-index: 3;
 }
-
-/* ========== WIN 3.1 SPLASH ========== */
 
 .splash-screen {
   position: fixed;

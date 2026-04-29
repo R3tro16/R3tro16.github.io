@@ -1,5 +1,3 @@
-// Desktop interaction: open windows on icon double-click, drag windows, close, clock
-
 (function () {
   let zCounter = 100;
 
@@ -9,7 +7,6 @@
     win.style.zIndex = String(++zCounter);
   }
 
-  // ============== ICON CLICKS ==============
   document.querySelectorAll('.desktop-icon').forEach(icon => {
     let clickTimer = null;
 
@@ -19,7 +16,6 @@
       if (!win) return;
       icon.classList.remove('selected');
 
-      // Win 3.1 icon flash, then window zoom-box opens during the flash tail
       icon.classList.add('flashing');
       setTimeout(() => icon.classList.remove('flashing'), 240);
 
@@ -33,7 +29,6 @@
 
     icon.addEventListener('click', (e) => {
       e.stopPropagation();
-      // Single-click selects (Windows 3.1 behavior)
       document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
       icon.classList.add('selected');
 
@@ -46,19 +41,16 @@
       }
     });
 
-    // Allow Enter to open when selected (keyboard nav)
     icon.tabIndex = 0;
     icon.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') open();
     });
   });
 
-  // Click outside icons deselects
   document.addEventListener('click', () => {
     document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
   });
 
-  // ============== CLOSE BUTTONS ==============
   document.querySelectorAll('[data-action="close"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -73,7 +65,6 @@
     });
   });
 
-  // ============== DRAGGING ==============
   document.querySelectorAll('.window').forEach(win => {
     const titleBar = win.querySelector('.title-bar');
     if (!titleBar) return;
@@ -86,7 +77,6 @@
       dragging = true;
       bringToFront(win);
 
-      // Convert centered windows (with transform: translateX) to absolute coords
       const rect = win.getBoundingClientRect();
       win.style.transform = 'none';
       win.style.left = rect.left + 'px';
@@ -112,7 +102,6 @@
     win.addEventListener('mousedown', () => bringToFront(win));
   });
 
-  // ============== CLOCK ==============
   function updateClock() {
     const el = document.getElementById('clock');
     if (!el) return;

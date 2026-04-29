@@ -1,5 +1,3 @@
-// Boot sequence: BIOS-style text → MS-DOS prompt → Windows 3.1 splash → Desktop
-
 (function () {
   const bootScreen = document.getElementById('boot-screen');
   const bootText = document.getElementById('boot-text');
@@ -7,11 +5,9 @@
   const splashScreen = document.getElementById('splash-screen');
   const desktop = document.getElementById('desktop');
 
-  // CRT power-on effect kicks in immediately
   bootScreen.classList.add('powering-on');
   document.body.classList.add('cursor-busy');
 
-  // Allow skipping with any key for impatient visitors
   let skipped = false;
   const skip = () => { skipped = true; };
   document.addEventListener('keydown', skip, { once: true });
