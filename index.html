@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RETRO16 // Cyber Portfolio</title>
+  <meta name="description" content="Portfolio de Retro16 — writeups CTF, bug bounty, game hacking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/boot.css" />
+  <link rel="stylesheet" href="styles/desktop.css" />
+</head>
+<body>
+
+  <!-- ============== BOOT SCREEN ============== -->
+  <div id="boot-screen" class="boot-screen">
+    <pre id="boot-text" class="boot-text"></pre>
+    <span id="boot-cursor" class="boot-cursor">_</span>
+  </div>
+
+  <!-- ============== WIN 3.1 SPLASH ============== -->
+  <div id="splash-screen" class="splash-screen hidden">
+    <div class="splash-box">
+      <div class="splash-logo">
+        <div class="splash-flag">
+          <span class="flag-r"></span>
+          <span class="flag-g"></span>
+          <span class="flag-b"></span>
+          <span class="flag-y"></span>
+        </div>
+      </div>
+      <div class="splash-text">
+        <div class="splash-ms">Microsoft<sub>&reg;</sub></div>
+        <div class="splash-win">Windows</div>
+        <div class="splash-ver">Version 3.16</div>
+        <div class="splash-copy">Copyright &copy; 1985-2026 Retro16 Cyber.<br/>Tous droits réservés.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== DESKTOP ============== -->
+  <div id="desktop" class="desktop hidden">
+
+    <!-- Program Manager window -->
+    <div class="window program-manager" id="program-manager" style="top: 8%; left: 50%; transform: translateX(-50%); width: 640px;">
+      <div class="title-bar">
+        <button class="ctrl-btn ctrl-menu" aria-label="menu">≡</button>
+        <div class="title-bar-text">Program Manager</div>
+        <div class="title-bar-controls">
+          <button class="ctrl-btn" data-action="minimize" aria-label="minimize">▼</button>
+          <button class="ctrl-btn" data-action="maximize" aria-label="maximize">▲</button>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <span class="menu-item"><u>F</u>ichier</span>
+        <span class="menu-item"><u>O</u>ptions</span>
+        <span class="menu-item"><u>F</u>enêtre</span>
+        <span class="menu-item">A<u>i</u>de</span>
+      </div>
+      <div class="window-body">
+        <div class="group-window">
+          <div class="group-title">RETRO16.GRP</div>
+          <div class="icon-grid">
+            <div class="desktop-icon" data-window="ctf">
+              <div class="icon-img icon-folder"></div>
+              <div class="icon-label">Mes_CTF.exe</div>
+            </div>
+            <div class="desktop-icon" data-window="bugbounty">
+              <div class="icon-img icon-bug"></div>
+              <div class="icon-label">Bug_Bounty.exe</div>
+            </div>
+            <div class="desktop-icon" data-window="gamehack">
+              <div class="icon-img icon-joystick"></div>
+              <div class="icon-label">Game_Hacking.exe</div>
+            </div>
+            <div class="desktop-icon" data-window="about">
+              <div class="icon-img icon-doc"></div>
+              <div class="icon-label">À_propos.txt</div>
+            </div>
+            <div class="desktop-icon" data-window="socials">
+              <div class="icon-img icon-globe"></div>
+              <div class="icon-label">Réseaux.lnk</div>
+            </div>
+            <div class="desktop-icon" data-window="contact">
+              <div class="icon-img icon-mail"></div>
+              <div class="icon-label">Contact.exe</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application windows (hidden until icon clicked) -->
+    <div class="window app-window hidden" data-id="ctf" style="top: 18%; left: 12%; width: 520px;">
+      <div class="title-bar"><div class="title-bar-text">Mes_CTF.exe</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body scrollable">
+        <h2>📁 Writeups CTF</h2>
+        <p>Mes solutions et analyses des challenges CTF auxquels j'ai participé.</p>
+        <ul class="writeup-list">
+          <li><span class="placeholder">[ Bientôt — premier writeup en préparation ]</span></li>
+        </ul>
+        <p class="hint">💡 <em>Pour ajouter un writeup, dupliquer un &lt;li&gt; dans index.html.</em></p>
+      </div>
+    </div>
+
+    <div class="window app-window hidden" data-id="bugbounty" style="top: 22%; left: 18%; width: 520px;">
+      <div class="title-bar"><div class="title-bar-text">Bug_Bounty.exe</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body scrollable">
+        <h2>🐛 Bug Bounty</h2>
+        <p>Vulnérabilités découvertes lors de programmes de bug bounty (responsibly disclosed).</p>
+        <ul class="writeup-list">
+          <li><span class="placeholder">[ Bientôt ]</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="window app-window hidden" data-id="gamehack" style="top: 26%; left: 22%; width: 520px;">
+      <div class="title-bar"><div class="title-bar-text">Game_Hacking.exe</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body scrollable">
+        <h2>🎮 Game Hacking</h2>
+        <p>Articles techniques sur le reverse engineering, l'analyse mémoire, et le fonctionnement interne des jeux vidéo.</p>
+        <ul class="writeup-list">
+          <li><span class="placeholder">[ Bientôt ]</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="window app-window hidden" data-id="about" style="top: 20%; left: 28%; width: 480px;">
+      <div class="title-bar"><div class="title-bar-text">À_propos.txt — Bloc-notes</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body notepad">
+        <pre>
+&gt; Salut, moi c'est Retro16.
+
+Je m'intéresse à la cybersécurité, principalement :
+  • CTF (capture the flag)
+  • Bug bounty
+  • Reverse engineering & game hacking
+
+Je documente ce que j'apprends ici, et je partage
+aussi du contenu sur YouTube et TikTok.
+
+  C:\&gt; _
+        </pre>
+      </div>
+    </div>
+
+    <div class="window app-window hidden" data-id="socials" style="top: 24%; left: 32%; width: 460px;">
+      <div class="title-bar"><div class="title-bar-text">Réseaux.lnk</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body">
+        <h2>🌐 Mes réseaux</h2>
+        <ul class="social-list">
+          <li><a href="https://www.youtube.com/@Retro16Cyber" target="_blank" rel="noopener">▶ YouTube — @Retro16Cyber</a></li>
+          <li><a href="https://www.tiktok.com/@retro16_cyber" target="_blank" rel="noopener">♪ TikTok — @retro16_cyber</a></li>
+          <li><a href="#" class="disabled">📷 Instagram — bientôt</a></li>
+          <li><a href="https://github.com/R3tro16" target="_blank" rel="noopener">⌘ GitHub — @R3tro16</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="window app-window hidden" data-id="contact" style="top: 28%; left: 36%; width: 440px;">
+      <div class="title-bar"><div class="title-bar-text">Contact.exe</div><div class="title-bar-controls"><button class="ctrl-btn" data-action="close">✕</button></div></div>
+      <div class="window-body">
+        <h2>📧 Me contacter</h2>
+        <p>Le meilleur moyen de me joindre :</p>
+        <ul>
+          <li>DM sur <a href="https://www.tiktok.com/@retro16_cyber" target="_blank" rel="noopener">TikTok</a></li>
+          <li>Issues sur <a href="https://github.com/R3tro16" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Status bar with clock -->
+    <div class="status-bar">
+      <span class="status-left">RETRO16.SYS — Ready</span>
+      <span class="status-right" id="clock">--:--</span>
+    </div>
+  </div>
+
+  <script src="scripts/boot.js"></script>
+  <script src="scripts/desktop.js"></script>
+</body>
+</html>

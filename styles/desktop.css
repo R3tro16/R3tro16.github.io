@@ -1,0 +1,319 @@
+/* ========== WINDOWS 3.1 DESKTOP ========== */
+
+.desktop {
+  position: fixed;
+  inset: 0;
+  background-color: #008080;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.06) 0 1px,
+      transparent 1px 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.06) 0 1px,
+      transparent 1px 2px
+    );
+  font-family: 'MS Sans Serif', 'Tahoma', 'Geneva', sans-serif;
+  font-size: 12px;
+  color: #000;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ========== WINDOW (chrome) ========== */
+
+.window {
+  position: absolute;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: 1px 1px 0 #000;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+.title-bar {
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: move;
+  height: 20px;
+}
+
+.window:not(.active) .title-bar {
+  background: #808080;
+}
+
+.title-bar-text {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.ctrl-btn {
+  background: #c0c0c0;
+  border: 1.5px solid;
+  border-color: #fff #000 #000 #fff;
+  color: #000;
+  font-family: inherit;
+  font-size: 10px;
+  width: 18px;
+  height: 16px;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ctrl-btn:active {
+  border-color: #000 #fff #fff #000;
+}
+
+.menu-bar {
+  background: #c0c0c0;
+  padding: 2px 6px;
+  border-bottom: 1px solid #808080;
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.menu-item {
+  cursor: pointer;
+  padding: 1px 4px;
+}
+
+.menu-item:hover {
+  background: #000080;
+  color: #fff;
+}
+
+.window-body {
+  background: #c0c0c0;
+  padding: 12px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.window-body.scrollable {
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.window-body h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.window-body p {
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.window-body ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.window-body a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+.window-body a.disabled {
+  color: #808080;
+  pointer-events: none;
+}
+
+/* ========== PROGRAM MANAGER ========== */
+
+.program-manager .window-body {
+  background: #c0c0c0;
+  padding: 8px;
+}
+
+.group-window {
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  padding: 6px;
+}
+
+.group-title {
+  background: #000080;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  margin: -6px -6px 8px;
+  font-size: 12px;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 12px;
+  padding: 12px 8px;
+}
+
+/* ========== DESKTOP ICONS ========== */
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px;
+  border: 1px dotted transparent;
+  text-align: center;
+}
+
+.desktop-icon:hover .icon-img {
+  filter: brightness(1.1);
+}
+
+.desktop-icon:focus,
+.desktop-icon.selected {
+  border-color: #000080;
+  background: rgba(0, 0, 128, 0.15);
+  outline: none;
+}
+
+.icon-label {
+  font-size: 11px;
+  color: #000;
+  word-break: break-word;
+  max-width: 90px;
+  line-height: 1.1;
+}
+
+/* Pixel icons drawn in pure CSS */
+.icon-img {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.icon-folder::before { content: "📁"; }
+.icon-bug::before    { content: "🐛"; }
+.icon-joystick::before { content: "🕹️"; }
+.icon-doc::before    { content: "📄"; }
+.icon-globe::before  { content: "🌐"; }
+.icon-mail::before   { content: "📧"; }
+
+/* ========== APP WINDOW CONTENT ========== */
+
+.notepad pre {
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  padding: 8px;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #000;
+  line-height: 1.4;
+}
+
+.writeup-list {
+  list-style: square;
+}
+
+.placeholder {
+  color: #808080;
+  font-style: italic;
+}
+
+.hint {
+  margin-top: 16px;
+  padding: 6px 8px;
+  background: #ffffd0;
+  border: 1px solid #808080;
+  font-size: 11px;
+}
+
+.social-list {
+  list-style: none;
+  padding: 0;
+}
+
+.social-list li {
+  padding: 6px 8px;
+  border-bottom: 1px dotted #808080;
+}
+
+.social-list li:last-child {
+  border-bottom: none;
+}
+
+.social-list a {
+  font-size: 13px;
+}
+
+/* ========== STATUS BAR ========== */
+
+.status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background: #c0c0c0;
+  border-top: 2px solid;
+  border-color: #fff transparent transparent transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.status-left, .status-right {
+  padding: 2px 6px;
+  border: 1px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
+/* ========== MOBILE ========== */
+
+@media (max-width: 768px) {
+  .program-manager {
+    width: 95vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .app-window {
+    width: 92vw !important;
+    left: 4vw !important;
+  }
+  .icon-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
