@@ -54,50 +54,40 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 110px;
-  height: 110px;
+  width: 180px;
+  height: 90px;
   z-index: 1;
   pointer-events: none;
-  border-radius: 50%;
-  padding: 4px;
-  background: conic-gradient(
-    from 0deg,
-    #c0c0c0 0deg,
-    #ff77aa 60deg,
-    #77ddff 120deg,
-    #aaff77 180deg,
-    #ffee77 240deg,
-    #ff77aa 300deg,
-    #c0c0c0 360deg
-  );
-  box-shadow:
-    0 0 0 1px #555,
-    inset 0 0 0 1px rgba(255,255,255,0.6),
-    3px 3px 0 rgba(0,0,0,0.35);
-  filter: hue-rotate(0deg);
+  filter: hue-rotate(0deg) drop-shadow(2px 2px 0 rgba(0,0,0,0.5));
   transition: filter 60ms steps(2, end);
   will-change: left, top, filter;
+  overflow: visible;
 }
 
-#dvd-bouncer img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+.dvd-letters {
+  font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  font-style: italic;
+  fill: url(#pp-fill);
+  stroke: #fff;
+  stroke-width: 2;
+  paint-order: stroke;
+  letter-spacing: -2px;
 }
 
-#dvd-bouncer::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24%;
-  height: 24%;
-  margin: -12% 0 0 -12%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #d0d0d0 70%, #888);
-  box-shadow: inset 0 0 3px rgba(0,0,0,0.5), 0 0 0 1px #888;
+.dvd-bar {
+  fill: url(#pp-fill);
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.dvd-video {
+  font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  fill: #fff;
+  letter-spacing: 1px;
 }
 
 .window {

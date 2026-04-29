@@ -158,13 +158,7 @@
       requestAnimationFrame(frame);
     }
 
-    const img = el.querySelector('img');
-    if (img && !img.complete) {
-      img.addEventListener('load', init, { once: true });
-      img.addEventListener('error', init, { once: true });
-    } else {
-      init();
-    }
+    requestAnimationFrame(init);
   }
 
   document.addEventListener('desktop:ready', () => {

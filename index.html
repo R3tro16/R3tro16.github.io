@@ -39,9 +39,16 @@
 
   <div id="desktop" class="desktop hidden">
 
-    <div id="dvd-bouncer" aria-hidden="true">
-      <img src="https://github.com/R3tro16.png?size=128" alt="" />
-    </div>
+    <svg id="dvd-bouncer" viewBox="0 0 200 100" aria-hidden="true">
+      <defs>
+        <pattern id="pp-fill" patternUnits="objectBoundingBox" width="1" height="1">
+          <image href="https://github.com/R3tro16.png?size=256" x="0" y="0" width="200" height="100" preserveAspectRatio="xMidYMid slice" />
+        </pattern>
+      </defs>
+      <text class="dvd-letters" x="100" y="58" text-anchor="middle">DVD</text>
+      <rect class="dvd-bar" x="50" y="66" width="100" height="22" rx="3" />
+      <text class="dvd-video" x="100" y="82" text-anchor="middle">VIDEO</text>
+    </svg>
 
     <div class="window program-manager" id="program-manager" style="top: 8%; left: 50%; transform: translateX(-50%); width: 640px;">
       <div class="title-bar">
